@@ -1,13 +1,11 @@
 //
-//  UIColor+Random.swift
-//  mdklychkovPW1
+//  WishMakerInteractor.swift
+//  mdklychkovPW2
 //
-//  Created by Maksim Klychkov on 15.10.2024.
+//  Created by Maksim Klychkov on 30.10.2024.
 //
 
-import UIKit
-
-extension UIColor {
+final class Interactor: BuisnessLogic {
     // MARK: - Constants
     private enum Constants {
         static let hexColorBinaryExp: Int = 24
@@ -15,8 +13,20 @@ extension UIColor {
         static let defaultAlpha: Double = 1.0
     }
     
-    // MARK: - Static Variables
-    static var random: UIColor {
+    // MARK: - Variables
+    private let presenter: PresentaionLogic
+    
+    init(presenter: PresentaionLogic) {
+        self.presenter = presenter
+    }
+    
+    // MARK: - Use Case: Change background color
+    func changeBackgroundColor(_ request: WishMaker.ChangeBackgroundColor.Request) {
+        presenter.presentChangedBackgroundColor(WishMaker.ChangeBackgroundColor.Response(red: request.red, green: request.green, blue: request.blue, alpha: Constants.defaultAlpha))
+    }
+    
+    // MARK: - Use Case: Randomize background color
+    func randomizeBackgroundColor(_ request: WishMaker.RandomizeBackgroundColor.Request) {
         // hex color is a number #______
         // need to generate an hex integer (from 0 to (16^6 - 1))
         // 16^6 = (2^4)^6 = 2^24 = 1 << 24
@@ -29,9 +39,6 @@ extension UIColor {
         intColor /= Constants.colorParameterCount
         let blue: Double = Double(intColor % Constants.colorParameterCount) / Double(Constants.colorParameterCount - 1)
         
-        return UIColor(red: red,
-                       green: green,
-                       blue: blue,
-                       alpha: Constants.defaultAlpha)
+        presenter.presentRandomizedBackgroundColor(WishMaker.RandomizeBackgroundColor.Response(red: red, green: green, blue: blue, alpha: Constants.defaultAlpha))
     }
 }

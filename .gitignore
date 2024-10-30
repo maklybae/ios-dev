@@ -5,7 +5,7 @@
 # my
 .DS_Store
 
-## User settings
+## User settings`
 xcuserdata/
 
 ## Obj-C/Swift specific
@@ -63,3 +63,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+.vscode/
