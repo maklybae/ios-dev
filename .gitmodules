@@ -4,3 +4,7 @@
 [submodule "mdklychkovPW3"]
 	path = mdklychkovPW3
 	url = git@github.com:maklybae/mdklychkovPW2.git
+
+[submodule "mdklychkovPW4"]
+	path = mdklychkovPW4
+	url = git@github.com:maklybae/mdklychkovPW2.git
